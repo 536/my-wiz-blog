@@ -45,6 +45,15 @@ pre {
     font-family: var(--font-code);
     color: var(--color-text);
     padding: 20px;
+    overflow-x: auto;
+}
+
+header>h1 {
+    text-align: center;
+}
+header>h1>a {
+    color: var(--color-text);
+    text-decoration: none;
 }
 
 .flex-center {

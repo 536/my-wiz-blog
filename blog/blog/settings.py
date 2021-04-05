@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-    'article',
+    'category',
     'tag',
     'django_celery_beat',
 ]

@@ -4,3 +4,7 @@ section {
     padding: 60px;
     width: 900px;
 }
+
+pre {
+    overflow-x: auto;
+}

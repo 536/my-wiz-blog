@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/article/category.css' %}">
+<link rel="stylesheet" href="{% static 'css/category/category.css' %}">
 {% endblock %}
 
 {% block body %}
@@ -15,7 +15,7 @@
         <ul class="doc">
             {% for doc in docs %}
                 {% ifequal category.id doc.Category_id %}
-            <li><a href="{% url 'article:article' docGuid=doc.guid %}">{{ doc.title }}</a></li>
+            <li><a href="{% url 'category:article' docGuid=doc.guid %}">{{ doc.title }}</a></li>
                 {% endifequal %}
             {% empty %}
             <div>empty</div>

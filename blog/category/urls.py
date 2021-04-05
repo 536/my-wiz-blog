@@ -6,9 +6,9 @@ from django.urls import path
 
 from . import views
 
-app_name = 'article'
+app_name = 'category'
 
 urlpatterns = [
-    path('', views.Index.as_view(), name='index'),
-    path('<uuid:docGuid>/', views.Article.as_view(), name='article'),
+    path('', views.CategoryView.as_view(), name='index'),
+    path('<uuid:docGuid>/', views.ArticleView.as_view(), name='article'),
 ]

@@ -1,0 +1,13 @@
+{% extends 'category/index.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/category/highlight.css' %}">
+<link rel="stylesheet" href="{% static 'css/category/article.css' %}">
+{% endblock %}
+
+{% block main %}
+<section>
+    {{ doc.html|safe }}
+</section>
+{% endblock %}

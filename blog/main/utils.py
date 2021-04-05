@@ -8,6 +8,7 @@ import mistune
 from bs4 import BeautifulSoup
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.timezone import get_current_timezone
 from pygments import highlight
 from pygments.formatters import html
 from pygments.lexers import get_lexer_by_name
@@ -66,8 +67,8 @@ def create_or_update_articles(wiz, categories):
                     title=wiz_doc['title'],
                     version=wiz_doc['version'],
                     readCount=wiz_doc['readCount'],
-                    created=datetime.utcfromtimestamp(wiz_doc['created'] / 1000),
-                    accessed=datetime.utcfromtimestamp(wiz_doc['accessed'] / 1000),
+                    created=datetime.fromtimestamp(wiz_doc['created'] / 1000, tz=get_current_timezone()),
+                    accessed=datetime.fromtimestamp(wiz_doc['accessed'] / 1000, tz=get_current_timezone()),
                     text=doc_text,
                     md=doc_md,
                     html=doc_html,
