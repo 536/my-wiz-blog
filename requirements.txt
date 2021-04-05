@@ -15,4 +15,6 @@ soupsieve==2.2.1
 sqlparse==0.4.1
 tzlocal==2.1
 urllib3==1.26.4
-wiz @ https://github.com/536/wiz/releases/download/v1.1.0/wiz-1.1.0-py3-none-any.whl
+celery~=5.0.5
+wiz~=1.1.0 # https://github.com/536/wiz/releases/download/v1.1.0/wiz-1.1.0-py3-none-any.whl
+PyMySQL~=1.0.2

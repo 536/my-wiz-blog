@@ -35,8 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'article'
-    # 'django_apscheduler',
+    'main',
+    'article',
+    'tag',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -72,10 +74,15 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# CREATE DATABASE IF NOT EXISTS blog DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'blog',
+        'USER': os.environ.get('DATABASES_DEFAULT_USER', 'root'),
+        'PASSWORD': os.environ.get('DATABASES_DEFAULT_PASSWORD', '123'),
+        'HOST': '127.0.0.1',
+        'PORT': 3306,
     }
 }
 
@@ -118,4 +125,12 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 WIZ_USERID = os.environ.get('WIZ_USERID', '')
 WIZ_PASSWORD = os.environ.get('WIZ_PASSWORD', '')
-WIZ_CATEGORIES = ['/blog/']
+WIZ_CATEGORY = '/blog/'
+
+# Celery settings
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
+CELERY_TIMEZONE = 'Asia/Shanghai'
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 3 * 60
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'

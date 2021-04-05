@@ -1,19 +1,14 @@
-from django.core.cache import cache
 from django.shortcuts import render
 from django.views import View
 
-from article.models import WizCategory, WizDoc
-from common.wiz_utils import init
+from main.models import Category, Doc
 
 
 class Index(View):
     def get(self, request):
-        if not cache.get('inited'):
-            init()
-            cache.set('inited', True, 60 * 60)
-        categories = WizCategory.objects.all()
-        docs = WizDoc.objects.all()
-        return render(request, template_name='index.html', context={
+        categories = Category.objects.all()
+        docs = Doc.objects.all()
+        return render(request, template_name='article/index.html', context={
             'categories': categories,
             'docs': docs
         })
@@ -21,7 +16,7 @@ class Index(View):
 
 class Article(View):
     def get(self, request, docGuid):
-        doc = WizDoc.objects.get(guid=docGuid)
-        return render(request, template_name='article.html', context={
+        doc = Doc.objects.get(guid=docGuid)
+        return render(request, template_name='article/article.html', context={
             'doc': doc
         })

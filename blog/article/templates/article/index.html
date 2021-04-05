@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/article/category.css' %}">
+{% endblock %}
+
+{% block body %}
+{% include 'components/navigation.html' %}
+<main class="flex-center">
+    {% block main %}
+    <ul class="category">
+        {% for category in categories %}
+        <li><h2>{{ category.name }}</h2></li>
+        <ul class="doc">
+            {% for doc in docs %}
+                {% ifequal category.id doc.Category_id %}
+            <li><a href="{% url 'article:article' docGuid=doc.guid %}">{{ doc.title }}</a></li>
+                {% endifequal %}
+            {% empty %}
+            <div>empty</div>
+            {% endfor %}
+        </ul>
+        {% empty %}
+        <div>empty</div>
+        {% endfor %}
+    </ul>
+    {% endblock %}
+</main>
+{% endblock %}

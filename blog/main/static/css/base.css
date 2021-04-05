@@ -46,3 +46,10 @@ pre {
     color: var(--color-text);
     padding: 20px;
 }
+
+.flex-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

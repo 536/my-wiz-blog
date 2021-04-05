@@ -1,0 +1,11 @@
+li {
+    margin: 10px;
+}
+
+.doc>li>a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+.doc>li>a:hover {
+    text-decoration: revert;
+}
