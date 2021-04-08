@@ -5,10 +5,9 @@
 <link rel="stylesheet" href="{% static 'css/category/category.css' %}">
 {% endblock %}
 
-{% block body %}
-{% include 'components/navigation.html' %}
+{% block main %}
 <main class="flex-center">
-    {% block main %}
+    {% block content %}
     <ul class="category">
         {% for category in categories %}
         <li><h2>{{ category.name }}</h2></li>
@@ -18,11 +17,11 @@
             <li><a href="{% url 'category:article' docGuid=doc.guid %}">{{ doc.title }}</a></li>
                 {% endifequal %}
             {% empty %}
-            <div>empty</div>
+            <div>快写篇笔记吧！</div>
             {% endfor %}
         </ul>
         {% empty %}
-        <div>empty</div>
+        <div>甚至没有一个目录...</div>
         {% endfor %}
     </ul>
     {% endblock %}

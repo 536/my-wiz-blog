@@ -16,7 +16,9 @@
     {% endblock %}
 </head>
 <body>
-    {% block body %}
+    {% include 'components/navigation.html' %}
+    {% block main %}
     {% endblock %}
+    {% include 'components/footer.html' %}
 </body>
 </html>

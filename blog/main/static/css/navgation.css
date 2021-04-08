@@ -2,6 +2,11 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    box-shadow: 0 0 5px 1px lightgray;
+}
+header>h1 {
+    margin-left: 20px;
+    margin-right: 20px;
 }
 header>ul {
     display: flex;
@@ -12,11 +17,4 @@ header>ul,
 header>ul>li {
     list-style:none;
     margin: 10px;
-}
-header>ul>li a {
-    color: var(--color-text);
-    text-decoration: none;
-}
-header>ul>li a:hover {
-    text-decoration: revert;
 }
