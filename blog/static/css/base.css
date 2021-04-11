@@ -1,5 +1,5 @@
 :root {
-    --color-selection: #C9F0DD;
+    --color-selection: rgb(201, 240, 221);
     --color-blue: #03A9F4;
     --color-blue-alpha: rgba(3, 172, 244, 0.08);
     --color-green: #49C784;
@@ -9,6 +9,7 @@
     --color-magenta: #f759ab;
     --color-red: #FF612F;
     --color-primary: #E8371A;
+    --color-light-text: rgba(0, 0, 0, 0.38);
     --color-text: rgba(0, 0, 0, 0.68);
     --color-heading: rgba(0, 0, 0, 0.98);
     --color-code: #F55826;
@@ -18,6 +19,7 @@
     --font-cjk: "Hiragino Sans GB","Droid Sans Fallback","Microsoft YaHei";
     --font-text: var(--font-english),var(--font-cjk),sans-serif;
     --font-code: "Roboto Mono",Menlo,monospace;
+    --color-light-background: rgba(0, 0, 0, 0.06);
     --code-background: rgba(0, 0, 0, .02);
     --code-alt-background: rgba(0, 0, 0, .03);
 }
@@ -35,12 +37,44 @@
     -ms-overflow-style:none; /* IE10+ */
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-selection: rgba(201, 240, 221, 0.6);
+        --color-blue: #03A9F4;
+        --color-blue-alpha: rgba(3, 172, 244, 0.08);
+        --color-green: #49C784;
+        --color-yellow: #F7BA2A;
+        --color-purple: #b37feb;
+        --color-cyan: #36cfc9;
+        --color-magenta: #f759ab;
+        --color-red: #FF612F;
+        --color-primary: #E8371A;
+        --color-light-text: rgba(0, 0, 0, 0.88);
+        --color-text: rgba(0, 0, 0, 0.98);
+        --color-heading: rgba(0, 0, 0);
+        --color-code: #F55826;
+        --color-autodoc-background: rgba(245,88,38,.05);
+        --color-autodoc-border: rgba(245,88,38,.4);
+        --font-english: "Roboto","Helvetica Neue","Helvetica";
+        --font-cjk: "Hiragino Sans GB","Droid Sans Fallback","Microsoft YaHei";
+        --font-text: var(--font-english),var(--font-cjk),sans-serif;
+        --font-code: "Roboto Mono",Menlo,monospace;
+        --color-light-background: rgba(0, 0, 0, 0.06);
+        --code-background: rgba(0, 0, 0, .9);
+        --code-alt-background: rgba(0, 0, 0, .03);
+    }
+    img {
+        opacity: .75;
+    }
+}
+
 html {
     height: 100%;
     font-family: sans-serif;
     line-height: 1.15;
     -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%
+    -webkit-text-size-adjust: 100%;
+    background: var(--code-background);
 }
 
 body {
@@ -59,10 +93,11 @@ body::after {
     left: 0;
     background-image: url('/static/img/wallpaper.png');
     background-position: top;
-    filter: alpha(opacity=20);
-    -moz-opacity: 0.2;
-    opacity: 0.2;
+    filter: alpha(opacity=15);
+    -moz-opacity: 0.15;
+    opacity: 0.15;
     pointer-events: none;
+    z-index: -1;
 }
 
 main {
@@ -72,6 +107,7 @@ main {
 
 pre {
     font-family: var(--font-code);
+    background: var(--code-background);
     color: var(--color-text);
     padding: 20px;
     overflow-x: auto;
@@ -79,17 +115,6 @@ pre {
 
 h1 {
     text-align: center;
-}
-
-.flex-center,
-.flex-center-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.flex-center-center {
-    justify-content: center;
 }
 
 footer {
@@ -125,4 +150,26 @@ footer>a:hover {
     filter: alpha(opacity=90);
     -moz-opacity: 0.9;
     opacity: 0.9;
+}
+
+.flex-row-center,
+.flex-row-center-center,
+.flex-column-center,
+.flex-column-center-center {
+    display: flex;
+    align-items: center;
+}
+
+.flex-column-center,
+.flex-column-center-center {
+    flex-direction: column;
+}
+
+.flex-row-center-center,
+.flex-column-center-center {
+    justify-content: center;
+}
+
+.user-select-none {
+    user-select: none;
 }

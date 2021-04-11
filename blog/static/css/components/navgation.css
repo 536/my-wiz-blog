@@ -1,0 +1,25 @@
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 0 0 5px 1px var(--color-light-text);
+}
+header>h1 {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 1.5em;
+}
+header>nav {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+}
+header>nav>a {
+    padding: 0 10px;
+    height: 100%;
+    transition: background .4s ease-in-out;
+}
+header>nav>a:hover {
+    text-decoration: none;
+    background: var(--color-light-background);
+}

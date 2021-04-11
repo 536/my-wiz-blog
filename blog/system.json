@@ -1,0 +1,9 @@
+[
+{
+    "model": "system.system",
+    "pk": "CATEGORY",
+    "fields": {
+        "value": "/blog/"
+    }
+}
+]

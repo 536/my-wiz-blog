@@ -1,0 +1,21 @@
+article {
+    padding: 60px;
+}
+
+article>h1:first-of-type+h1 {
+    display: none;
+}
+
+pre {
+    overflow: hidden;
+}
+
+li {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+article a {
+    text-decoration: revert;
+    padding: 0 5px;
+}

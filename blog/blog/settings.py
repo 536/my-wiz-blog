@@ -35,9 +35,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main',
-    'category',
-    'tag',
+    'system',
+    'wiznote',
+    # 'main',
+    # 'category',
+    # 'tag',
     'django_celery_beat',
 ]
 
@@ -121,11 +123,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'fe' / 'static'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
-WIZ_USERID = os.environ.get('WIZ_USERID', '')
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+WIZ_USERNAME = os.environ.get('WIZ_USERNAME', '')
 WIZ_PASSWORD = os.environ.get('WIZ_PASSWORD', '')
-WIZ_CATEGORY = '/blog/'
 
 # Celery settings
 CELERY_BROKER_URL = 'redis://localhost:6379/0'

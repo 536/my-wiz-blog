@@ -16,14 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from main import views
+from system import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', views.IndexView.as_view(), name='index'),
+    path('index/', views.IndexView.as_view(), name='index'),
+
     path('about/', views.AboutView.as_view(), name='about'),
 
-    path('tag/', include('tag.urls', namespace='tag')),
-    path('category/', include('category.urls', namespace='category'))
+    path('wiznote/', include('wiznote.urls', namespace='wiznote')),
 ]

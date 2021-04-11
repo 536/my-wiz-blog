@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/highlight.css' %}">
+<link rel="stylesheet" href="{% static 'css/wiznote/doc.css' %}">
+{% endblock %}
+
+{% block main %}
+<main class="flex-column-center">
+    {% block content %}
+    <article>
+        <h1>{{ doc.version.title|slice:":-3" }}</h1>
+        {{ doc.version.html|safe }}
+    </article>
+    {% endblock %}
+</main>
+{% endblock %}
