@@ -10,6 +10,6 @@ app_name = 'wiznote'
 
 urlpatterns = [
     path('category/', views.CategoryView.as_view(), name='category'),
-    path('tags/', views.TagsView.as_view(), name='tags'),
+    path('tag/', views.TagView.as_view(), name='tag'),
     path('doc/<uuid:docGuid>/', views.DocView.as_view(), name='doc'),
 ]

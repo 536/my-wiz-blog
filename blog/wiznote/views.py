@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 
-from wiznote.models import Doc, Category
+from wiznote.models import Doc, Category, Tag
 
 
 class CategoryView(View):
@@ -12,9 +12,12 @@ class CategoryView(View):
         })
 
 
-class TagsView(View):
+class TagView(View):
     def get(self, request):
-        return render(request, 'wiznote/tags.html')
+        tags = Tag.objects.prefetch_related().all()
+        return render(request, template_name='wiznote/tag.html', context={
+            'tags': tags
+        })
 
 
 class DocView(View):

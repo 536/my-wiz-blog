@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block title %}
-    <title>Index</title>
+    <title>{{ SYSTEM_TITLE_PREFIX }} | Index</title>
     {% endblock %}
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
@@ -16,6 +16,11 @@
     {% endblock %}
 </head>
 <body>
+    {% if not debug %}
+    {% for query in sql_queries %}
+    <div date-time="{{ query.time }}">{{ query.sql }}</div>
+    {% endfor %}
+    {% endif %}
     {% include 'components/navigation.html' %}
     {% block main %}
     {% endblock %}

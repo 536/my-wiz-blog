@@ -69,11 +69,13 @@ class DocManager(models.Manager):
                 wiz_doc = [_ for _ in wiz_docs if _['docGuid'] == doc.guid][0]
                 if doc.version_id != wiz_doc['version']:
                     text = wiz.get_note_view(docGuid=wiz_doc['docGuid']).text
+                    tags = wiz_doc['tags'].split('*') if wiz_doc['tags'] else []
+                    Tag.objects.filter(guid__in=tags).update(using=True)
                     version = DocVersion.objects.add(
                         version=wiz_doc['version'],
                         title=wiz_doc['title'],
                         text=text,
-                        tags=wiz_doc['tags'].split('*')
+                        tags=tags
                     )
                     doc.update(version=version)
                 wiz_docs_guid.remove(doc.guid)
@@ -83,11 +85,13 @@ class DocManager(models.Manager):
         for wiz_doc_guid in wiz_docs_guid:
             wiz_doc = [_ for _ in wiz_docs if _['docGuid'] == wiz_doc_guid][0]
             text = wiz.get_note_view(docGuid=wiz_doc['docGuid']).text
+            tags = wiz_doc['tags'].split('*') if wiz_doc['tags'] else []
+            Tag.objects.filter(guid__in=tags).update(using=True)
             version = DocVersion.objects.add(
                 version=wiz_doc['version'],
                 title=wiz_doc['title'],
                 text=text,
-                tags=wiz_doc['tags'].split('*') if wiz_doc['tags'] else []
+                tags=tags
             )
             Doc.objects.create(
                 guid=wiz_doc['docGuid'],

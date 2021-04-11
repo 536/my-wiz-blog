@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>{{ SYSTEM_TITLE_PREFIX }} | Tag</title>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/wiznote/tag.css' %}">
+{% endblock %}
+
+{% block main %}
+<main class="flex-column-center">
+    {% block content %}
+    <section>
+        {% for tag in tags %}
+        <details class="tag" open>
+            <summary class="user-select-none" data-count="{{ tag.docversion_set.count }}">{{ tag.name }}</summary>
+            <dl class="doc">
+                {% for docversion in tag.docversion_set.all %}
+                <dt class="subtitle-time">{{ docversion.doc_set.first.created|date:"Y/m/d" }}</dt>
+                <dd>
+                    <a href="{% url 'wiznote:doc' docGuid=docversion.doc_set.first.guid %}">{{ docversion.title|slice:":-3" }}</a>
+                </dd>
+                {% empty %}
+                <div>快写篇笔记吧！</div>
+                {% endfor %}
+            </dl>
+        </details>
+        {% endfor %}
+    </section>
+    {% endblock %}
+</main>
+{% endblock %}

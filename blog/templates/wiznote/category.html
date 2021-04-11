@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+<title>{{ SYSTEM_TITLE_PREFIX }} | Category</title>
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/wiznote/category.css' %}">
 {% endblock %}

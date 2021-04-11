@@ -15,6 +15,7 @@ def update_wiz():
 
 
 def wiz_periodical_update():
+    Tag.objects.update(using=False)
     with Wiz(username=settings.WIZ_USERNAME, password=settings.WIZ_PASSWORD) as wiz:
         # tag
         tags = wiz.get_tags().json()['result']
@@ -32,3 +33,5 @@ def wiz_periodical_update():
                                            start=0,
                                            count=50).json()['result']
             Doc.objects.periodical_update(wiz, docs, category)
+
+    Tag.objects.filter(using=False).delete()

@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+<title>{{ SYSTEM_TITLE_PREFIX }} | {{ doc.version.title|slice:":-3" }}</title>
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/highlight.css' %}">
 <link rel="stylesheet" href="{% static 'css/wiznote/doc.css' %}">
@@ -11,6 +15,16 @@
     {% block content %}
     <article>
         <h1>{{ doc.version.title|slice:":-3" }}</h1>
+        <h4 class="info flex-row-center">
+            <div class="tags">
+                {% for tag in doc.version.tags.all %}
+                <span>{{ tag.name }}</span>
+                {% endfor %}
+            </div>
+            <div class="date">
+                <span>{{ doc.created|date:"Y/m/d h:i:s" }}</span>
+            </div>
+        </h4>
         {{ doc.version.html|safe }}
     </article>
     {% endblock %}

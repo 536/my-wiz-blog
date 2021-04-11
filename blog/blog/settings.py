@@ -25,6 +25,7 @@ SECRET_KEY = '^h21s@$)t^(ef^e*)9vf=xy4l$s*%&#j!d=0hw#^2&%+7p2(-z'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+INTERNAL_IPS = ['127.0.0.1']
 
 # Application definition
 
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'system.context_processors.system',
             ],
         },
     },
@@ -138,3 +140,6 @@ CELERY_TIMEZONE = 'Asia/Shanghai'
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 3 * 60
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+SYSTEM_TITLE_PREFIX = 'Hi'
+SYSTEM_SOCIAL_GITHUB = 'https://github.com/536/'
