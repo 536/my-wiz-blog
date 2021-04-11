@@ -1,20 +1,12 @@
-APScheduler==3.7.0
-asgiref==3.3.1
 beautifulsoup4==4.9.3
-certifi==2020.12.5
-chardet==4.0.0
-Django==3.1.7
-django-apscheduler==0.5.2
-idna==2.10
+celery==5.0.5
+Django==3.2
+django-celery-beat==2.2.0
+eventlet==0.30.2
 mistune==2.0.0rc1
 Pygments==2.8.1
+PyMySQL==1.0.2
 pytz==2021.1
+redis==3.5.3
 requests==2.25.1
-six==1.15.0
-soupsieve==2.2.1
-sqlparse==0.4.1
-tzlocal==2.1
-urllib3==1.26.4
-celery~=5.0.5
-wiz~=1.1.0 # https://github.com/536/wiz/releases/download/v1.1.0/wiz-1.1.0-py3-none-any.whl
-PyMySQL~=1.0.2
+wiznote==1.1.2
