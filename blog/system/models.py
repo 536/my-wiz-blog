@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
 
@@ -5,7 +6,7 @@ class SystemManager(models.Manager):
     def get_key(self, key: str, default: any = None):
         try:
             value = self.get(key=key).value
-        except self.DoesNotExist:
+        except ObjectDoesNotExist:
             value = default
         return value
 
