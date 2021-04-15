@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '^h21s@$)t^(ef^e*)9vf=xy4l$s*%&#j!d=0hw#^2&%+7p2(-z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 INTERNAL_IPS = ['127.0.0.1']
@@ -38,9 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'system',
     'wiznote',
-    # 'main',
-    # 'category',
-    # 'tag',
     'django_celery_beat',
 ]
 
@@ -84,9 +81,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'blog',
         'USER': os.environ.get('DATABASES_DEFAULT_USER', 'root'),
-        'PASSWORD': os.environ.get('DATABASES_DEFAULT_PASSWORD', '123'),
-        'HOST': '127.0.0.1',
-        'PORT': 3306,
+        'PASSWORD': os.environ.get('DATABASES_DEFAULT_PASSWORD', ''),
+        'HOST': os.environ.get('DATABASES_DEFAULT_HOST', '127.0.0.1'),
+        'PORT': os.environ.get('DATABASES_DEFAULT_PORT', 3306),
     }
 }
 
@@ -125,7 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'fe' / 'static'
+STATIC_ROOT = '/www/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
@@ -140,6 +137,3 @@ CELERY_TIMEZONE = 'Asia/Shanghai'
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 3 * 60
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
-
-SYSTEM_TITLE_PREFIX = 'Hi'
-SYSTEM_SOCIAL_GITHUB = 'https://github.com/536/'
