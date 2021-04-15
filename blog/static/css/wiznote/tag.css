@@ -3,7 +3,7 @@
 }
 
 section {
-    min-width: 500px;
+    /* min-width: 500px; */
 }
 
 details {
@@ -23,7 +23,7 @@ summary::marker {
 }
 
 dl {
-    margin-left: 50px;
+    /* margin-left: 50px; */
 }
 
 dt {

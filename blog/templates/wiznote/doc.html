@@ -15,10 +15,10 @@
     {% block content %}
     <article>
         <h1>{{ doc.version.title|slice:":-3" }}</h1>
-        <h4 class="info flex-row-center">
+        <h4 class="info flex-row-center user-select-none">
             <div class="tags">
                 {% for tag in doc.version.tags.all %}
-                <span>{{ tag.name }}</span>
+                <a href="#">{{ tag.name }}</a>
                 {% endfor %}
             </div>
             <div class="date">

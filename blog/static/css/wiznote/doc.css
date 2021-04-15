@@ -1,5 +1,10 @@
+main {
+    padding: 10px;
+    word-wrap: break-word;
+}
+
 article {
-    padding: 60px;
+    max-width: 100%;
 }
 
 article>h1:first-of-type+h4+h1 {
@@ -7,7 +12,7 @@ article>h1:first-of-type+h4+h1 {
 }
 
 pre {
-    overflow: hidden;
+    font-size: 14px;
 }
 
 li {
@@ -23,4 +28,25 @@ article a {
 .info {
     justify-content: space-between;
     color: var(--color-light-text);
+}
+
+.tags {
+    font-size: 0;
+}
+
+.tags>a {
+    font-size: 14px;
+    padding: 0 5px;
+    box-sizing: border-box;
+    background: var(--color-doc-tags-background);
+    color: var(--color-doc-tags);
+    text-decoration: none;
+}
+
+.tags>a:not(:last-of-type) {
+    margin-right: 10px;
+}
+
+.tags>a:hover {
+    color: var(--color-doc-tags-hover);
 }

@@ -20,8 +20,12 @@
     --font-text: var(--font-english),var(--font-cjk),sans-serif;
     --font-code: "Roboto Mono",Menlo,monospace;
     --color-light-background: rgba(0, 0, 0, 0.06);
-    --code-background: rgba(0, 0, 0, .02);
+    --background: rgb(255 ,255 ,255, 0.8);
+    --code-background: rgba(234, 250, 234, 0.6);
     --code-alt-background: rgba(0, 0, 0, .03);
+    --color-doc-tags: rgba(160, 150, 147, 0.8);
+    --color-doc-tags-background: rgba(255, 231, 147, 0.6);
+    --color-doc-tags-hover: rgba(0, 50, 100, 0.8);
 }
 
 ::selection {
@@ -40,26 +44,8 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --color-selection: rgba(201, 240, 221, 0.6);
-        --color-blue: #03A9F4;
-        --color-blue-alpha: rgba(3, 172, 244, 0.08);
-        --color-green: #49C784;
-        --color-yellow: #F7BA2A;
-        --color-purple: #b37feb;
-        --color-cyan: #36cfc9;
-        --color-magenta: #f759ab;
-        --color-red: #FF612F;
-        --color-primary: #E8371A;
-        --color-light-text: rgba(0, 0, 0, 0.88);
-        --color-text: rgba(0, 0, 0, 0.98);
-        --color-heading: rgba(0, 0, 0);
-        --color-code: #F55826;
-        --color-autodoc-background: rgba(245,88,38,.05);
-        --color-autodoc-border: rgba(245,88,38,.4);
-        --font-english: "Roboto","Helvetica Neue","Helvetica";
-        --font-cjk: "Hiragino Sans GB","Droid Sans Fallback","Microsoft YaHei";
-        --font-text: var(--font-english),var(--font-cjk),sans-serif;
-        --font-code: "Roboto Mono",Menlo,monospace;
         --color-light-background: rgba(0, 0, 0, 0.06);
+        --background: rgba(0, 0, 0, 0);
         --code-background: rgba(0, 0, 0, .9);
         --code-alt-background: rgba(0, 0, 0, .03);
     }
@@ -74,7 +60,7 @@ html {
     line-height: 1.15;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-    background: var(--code-background);
+    background: var(--background);
 }
 
 body {
