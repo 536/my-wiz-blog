@@ -18,7 +18,7 @@
         <h4 class="info flex-row-center user-select-none">
             <div class="tags">
                 {% for tag in doc.version.tags.all %}
-                <a href="#">{{ tag.name }}</a>
+                <a href="{% url 'wiznote:tag' guid=tag.guid %}">{{ tag.name }}</a>
                 {% endfor %}
             </div>
             <div class="date">

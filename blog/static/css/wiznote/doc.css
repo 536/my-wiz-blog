@@ -1,18 +1,25 @@
+article {
+    width: 100%;
+}
+
+@media screen and (min-width: 1366px) {
+    article {
+        width: 50%;
+    }
+}
+
 main {
     padding: 10px;
     word-wrap: break-word;
 }
 
-article {
-    max-width: 100%;
-}
-
-article>h1:first-of-type+h4+h1 {
+article>h1:not(:first-of-type){
     display: none;
 }
 
-pre {
-    font-size: 14px;
+article a {
+    text-decoration: revert;
+    padding: 0 5px;
 }
 
 li {
@@ -20,9 +27,10 @@ li {
     margin-bottom: 1em;
 }
 
-article a {
-    text-decoration: revert;
-    padding: 0 5px;
+code {
+    background: var(--color-light-background);
+    padding: 0 3px;
+    border-radius: 3px;
 }
 
 .info {
@@ -38,15 +46,15 @@ article a {
     font-size: 14px;
     padding: 0 5px;
     box-sizing: border-box;
-    background: var(--color-doc-tags-background);
-    color: var(--color-doc-tags);
     text-decoration: none;
+    color: var(--color-text);
 }
 
-.tags>a:not(:last-of-type) {
-    margin-right: 10px;
+.tags>a::before {
+    content: "#";
 }
 
 .tags>a:hover {
-    color: var(--color-doc-tags-hover);
+    color: var(--color-theme-text);
+    text-decoration: revert;
 }

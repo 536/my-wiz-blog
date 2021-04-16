@@ -13,7 +13,9 @@
 <main class="flex-column-center user-select-none">
     {% block content %}
     <section>
+        {% for tag in tags %}
         {% include 'wiznote/components/doc-list.html' %}
+        {% endfor %}
     </section>
     {% endblock %}
 </main>

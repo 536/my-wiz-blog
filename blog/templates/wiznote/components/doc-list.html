@@ -1,0 +1,9 @@
+<h2>{{ tag.name }}</h2>
+{% for docversion in tag.docversion_set.all %}
+<div>
+    <a href="{% url 'wiznote:doc' guid=docversion.doc_set.first.guid %}">
+        <span>{{ docversion.title|slice:":-3" }}</span>
+        <span>{{ docversion.doc_set.first.created|date:'Y/m/d' }}</span>
+    </a>
+</div>
+{% endfor %}

@@ -6,23 +6,31 @@ from wiznote.models import Doc, Category, Tag
 
 class CategoryView(View):
     def get(self, request):
-        categories = Category.objects.select_related().all()
+        docs = Doc.objects.select_related().all()
         return render(request, template_name='wiznote/category.html', context={
-            'categories': categories,
+            'docs': docs,
         })
 
 
-class TagView(View):
+class TagsView(View):
     def get(self, request):
         tags = Tag.objects.prefetch_related().all()
-        return render(request, template_name='wiznote/tag.html', context={
+        return render(request, template_name='wiznote/tags.html', context={
             'tags': tags
         })
 
 
+class TagView(View):
+    def get(self, request, guid):
+        tag = Tag.objects.prefetch_related().get(guid=guid)
+        return render(request, template_name='wiznote/tag.html', context={
+            'tag': tag
+        })
+
+
 class DocView(View):
-    def get(self, request, docGuid):
-        doc = Doc.objects.select_related().get(guid=docGuid)
+    def get(self, request, guid):
+        doc = Doc.objects.select_related().get(guid=guid)
         return render(request, template_name='wiznote/doc.html', context={
             'doc': doc
         })

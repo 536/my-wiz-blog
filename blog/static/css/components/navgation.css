@@ -17,9 +17,8 @@ header>nav {
 header>nav>a {
     padding: 0 10px;
     height: 100%;
-    transition: background .4s ease-in-out;
 }
-header>nav>a:hover {
+header a {
+    color: var(--color-text);
     text-decoration: none;
-    background: var(--color-light-background);
 }

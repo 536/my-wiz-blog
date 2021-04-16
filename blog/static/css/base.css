@@ -1,5 +1,4 @@
 :root {
-    --color-selection: rgb(201, 240, 221);
     --color-blue: #03A9F4;
     --color-blue-alpha: rgba(3, 172, 244, 0.08);
     --color-green: #49C784;
@@ -19,13 +18,12 @@
     --font-cjk: "Hiragino Sans GB","Droid Sans Fallback","Microsoft YaHei";
     --font-text: var(--font-english),var(--font-cjk),sans-serif;
     --font-code: "Roboto Mono",Menlo,monospace;
-    --color-light-background: rgba(0, 0, 0, 0.06);
+
+    --color-selection: #31CF9D;
     --background: rgb(255 ,255 ,255, 0.8);
-    --code-background: rgba(234, 250, 234, 0.6);
-    --code-alt-background: rgba(0, 0, 0, .03);
-    --color-doc-tags: rgba(160, 150, 147, 0.8);
-    --color-doc-tags-background: rgba(255, 231, 147, 0.6);
-    --color-doc-tags-hover: rgba(0, 50, 100, 0.8);
+    --color-theme-text: #31CF9D;
+    --code-background: #F6F8FA;
+    --color-light-background: #F6F8FA;
 }
 
 ::selection {
@@ -33,21 +31,22 @@
 }
 
 ::-webkit-scrollbar {
-    display: none; /* Chrome Safari */
+    display: none;
 }
 
 * {
-    scrollbar-width:none; /* Firefox */
-    -ms-overflow-style:none; /* IE10+ */
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    outline: none;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --color-selection: rgba(201, 240, 221, 0.6);
-        --color-light-background: rgba(0, 0, 0, 0.06);
-        --background: rgba(0, 0, 0, 0);
-        --code-background: rgba(0, 0, 0, .9);
-        --code-alt-background: rgba(0, 0, 0, .03);
+        --color-selection: #1DA57A;
+        --background: #21252B;
+        --color-theme-text: #1DA57A;
+        --code-background: #21252B;
+        --color-light-background: #21252B;
     }
     img {
         opacity: .75;
@@ -93,6 +92,7 @@ pre {
     font-family: var(--font-code);
     background: var(--code-background);
     color: var(--color-text);
+    font-size: 14px;
     padding: 20px;
     overflow-x: auto;
 }
@@ -109,19 +109,6 @@ footer {
     flex-direction: row-reverse;
     padding: 10px;
     box-sizing: border-box;
-}
-
-a {
-    color: var(--color-text);
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: revert;
-}
-
-h1>a:hover {
-    text-decoration: none;
 }
 
 footer>a {
@@ -152,4 +139,11 @@ footer>a:hover {
 
 .user-select-none {
     user-select: none;
+}
+
+.transition-background-ease {
+    transition: background .4s ease-in-out;
+}
+.transition-background-ease:hover {
+    background: var(--color-light-background);
 }

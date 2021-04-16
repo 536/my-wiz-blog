@@ -6,27 +6,20 @@
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/wiznote/category.css' %}">
+<link rel="stylesheet" href="{% static 'css/wiznote/components/doc-list.css' %}">
 {% endblock %}
 
 {% block main %}
 <main class="flex-column-center">
     {% block content %}
     <section>
-        {% for category in categories %}
-        <details class="category" open>
-            <summary class="user-select-none" data-count="{{ category.doc_set.count }}">{{ category.name }}</summary>
-            <dl class="doc">
-                {% for doc in category.doc_set.all %}
-                <dt class="subtitle-time">{{ doc.created|date:"Y/m/d" }}</dt>
-                <dd>
-                    <a href="{% url 'wiznote:doc' docGuid=doc.guid %}">{{ doc.version.title|slice:":-3" }}</a>
-                </dd>
-                {% empty %}
-                <div>快写篇笔记吧！</div>
-                {% endfor %}
-            </dl>
-        </details>
+        {% for doc in docs %}
+        <div>
+            <a href="{% url 'wiznote:doc' guid=doc.guid %}">
+                <span>{{ doc.version.title|slice:":-3" }}</span>
+                <span>{{ doc.created|date:'Y/m/d' }}</span>
+            </a>
+        </div>
         {% endfor %}
     </section>
     {% endblock %}

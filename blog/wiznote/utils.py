@@ -18,8 +18,11 @@ class HighlightRenderer(mistune.HTMLRenderer):
             except ClassNotFound:
                 lexer = get_lexer_by_name('text', stripall=True)
             formatter = html.HtmlFormatter()
-            return highlight(code, lexer, formatter)
-        return '<pre><code>' + mistune.escape(code) + '</code></pre>'
+            text = highlight(code, lexer, formatter)
+            text = text[:27] + ' lang="' + lang + text[27:]
+        else:
+            text = '<pre lang="%s"><code>%s</code></pre>' % (lang, mistune.escape(code))
+        return text
 
 
 def wiz_html_to_md(content: str):
