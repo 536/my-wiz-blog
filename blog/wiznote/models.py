@@ -74,7 +74,7 @@ class DocManager(models.Manager):
             # 已保存的远端数据
             if doc.guid in wiz_docs_guid:
                 for wiz_doc in wiz_docs:
-                    if wiz_doc['docGuid'] == doc.guid:
+                    if wiz_doc['docGuid'] == str(doc.guid):
                         # 版本号一致
                         if doc.version_id == wiz_doc['version']:
                             wiz_docs_guid.remove(doc.guid)
