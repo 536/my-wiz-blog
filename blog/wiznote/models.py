@@ -1,7 +1,9 @@
 import logging
 from datetime import datetime
-from html import unescape
+from pathlib import Path
 
+from django.conf import settings
+from django.core.files.base import ContentFile
 from django.db import models
 from django.utils.timezone import get_current_timezone
 
@@ -64,51 +66,61 @@ class CategoryManager(models.Manager):
 
 class DocManager(models.Manager):
     def periodical_update(self, wiz, docs, category):
+        # 远端数据
         wiz_docs = [_ for _ in docs if _['title'].endswith('.md')]
         wiz_docs_guid = [_['docGuid'] for _ in docs if _['title'].endswith('.md')]
 
         for doc in self.filter(category=category):
+            # 已保存的远端数据
             if doc.guid in wiz_docs_guid:
-                wiz_doc = [_ for _ in wiz_docs if _['docGuid'] == doc.guid][0]
-                if doc.version_id != wiz_doc['version']:
-                    text = wiz.get_note_view(docGuid=wiz_doc['docGuid']).text
-                    tags = wiz_doc.get('tags')
-                    if tags:
-                        tags = tags.split('*')
-                        Tag.objects.filter(guid__in=tags).update(using=True)
-                        version = DocVersion.objects.add(
-                            version=wiz_doc['version'],
-                            title=wiz_doc['title'],
-                            text=text,
-                            tags=tags
-                        )
-                        doc.update(version=version)
-                wiz_docs_guid.remove(doc.guid)
-            else:
-                doc.delete()
+                for wiz_doc in wiz_docs:
+                    if wiz_doc['docGuid'] == doc.guid:
+                        # 版本号一致
+                        if doc.version_id == wiz_doc['version']:
+                            wiz_docs_guid.remove(doc.guid)
+                        break
+            # 远端不存在的数据 / 远端存在但是本地版本号不一致
+            # 删除本地数据 / 删除本地数据再新增
+            doc.delete()
 
+        # 远端存在但是本地没有的数据 / 远端存在但是本地版本号不一致的数据
+        # 新增
         for wiz_doc_guid in wiz_docs_guid:
-            wiz_doc = [_ for _ in wiz_docs if _['docGuid'] == wiz_doc_guid]
-            if wiz_doc:
-                wiz_doc = wiz_doc[0]
+            for wiz_doc in wiz_docs:
+                if wiz_doc['docGuid'] == wiz_doc_guid:
+                    note = wiz.download_note(docGuid=wiz_doc_guid, downloadInfo=1, downloadData=1).json()
+                    text = note['html']
+                    tags = wiz_doc.get('tags').split('*') if wiz_doc.get('tags') else []
+                    Tag.objects.filter(guid__in=tags).update(using=True)
+                    version = DocVersion.objects.add(
+                        version=wiz_doc['version'],
+                        title=wiz_doc['title'],
+                        text=text,
+                        tags=tags
+                    )
+                    doc = Doc.objects.create(
+                        guid=wiz_doc_guid,
+                        created=datetime.fromtimestamp(wiz_doc['created'] / 1000, tz=get_current_timezone()),
+                        category=category,
+                        version=version,
+                    )
+                    resources = note.get('resources') if note.get('resources') else []
+                    for resource in resources:
+                        res, created = Resource.objects.get_or_create(name=resource['name'], doc=doc, version=version)
+                        if created:
+                            res.file.save(resource['name'], ContentFile(wiz.session.get(resource['url']).content))
 
-                logger.info(wiz_doc)
-                text = unescape(wiz.get_note_view(docGuid=wiz_doc['docGuid']).text)
-                tags = wiz_doc.get('tags')
-                tags = tags.split('*') if tags else []
-                Tag.objects.filter(guid__in=tags).update(using=True)
-                version = DocVersion.objects.add(
-                    version=wiz_doc['version'],
-                    title=wiz_doc['title'],
-                    text=text,
-                    tags=tags
-                )
-                Doc.objects.create(
-                    guid=wiz_doc['docGuid'],
-                    created=datetime.fromtimestamp(wiz_doc['created'] / 1000, tz=get_current_timezone()),
-                    category=category,
-                    version=version,
-                )
+                            version.html = version.html.replace(
+                                'index_files/%s' % res.name,
+                                '%s%s/%s/index_files/%s' % (
+                                    settings.MEDIA_URL,
+                                    doc.guid,
+                                    version.version,
+                                    res.name
+                                )
+                            )
+                            version.save()
+                    break
 
 
 class Tag(models.Model):
@@ -150,3 +162,17 @@ class Doc(models.Model):
 
     class Meta:
         ordering = ['-created']
+
+
+def resource_upload_to(instance, filename):
+    return Path(settings.MEDIA_ROOT) / instance.doc_id / str(instance.version.version) / 'index_files' / filename
+
+
+class Resource(models.Model):
+    objects = models.Manager()
+
+    file = models.FileField(upload_to=resource_upload_to)
+    name = models.CharField(max_length=200)
+
+    doc = models.ForeignKey(to=Doc, on_delete=models.CASCADE)
+    version = models.ForeignKey(to=DocVersion, on_delete=models.CASCADE)

@@ -1,5 +1,7 @@
 article {
     width: 100%;
+    overflow-x: hidden;
+    padding: 30px;
 }
 
 @media screen and (min-width: 1366px) {
@@ -14,7 +16,7 @@ main {
 }
 
 article>h1 {
-    margin: 35px 0;
+    margin-bottom: 35px;
 }
 
 article>h1:not(:first-of-type) {
@@ -41,9 +43,14 @@ pre {
     overflow-x: auto;
 }
 
-code {
+kbd, code {
     background: var(--code-background);
     color: var(--color-text);
+}
+
+p>img {
+    display: block;
+    margin: 10px auto;
 }
 
 .info {

@@ -17,7 +17,7 @@ class HighlightRenderer(mistune.HTMLRenderer):
                 lexer = get_lexer_by_name(lang, stripall=True)
             except ClassNotFound:
                 lexer = get_lexer_by_name('text', stripall=True)
-            formatter = html.HtmlFormatter()
+            formatter = html.HtmlFormatter(linenos='inline')
             text = highlight(code, lexer, formatter)
             text = text[:27] + ' lang="' + lang + '"' + text[27:]
         else:
@@ -26,9 +26,21 @@ class HighlightRenderer(mistune.HTMLRenderer):
 
 
 def wiz_html_to_md(content: str):
+    def recursive_div(div_element):
+        div_as_md = []
+        for element in div_element.contents:
+            if element.name == 'div':
+                div_as_md.append('\n')
+                div_as_md.extend(recursive_div(element))
+            else:
+                div_as_md.append(str(element)
+                                 .replace('\xa0', ' ')
+                                 .replace('<br/>', '\n'))
+        return ''.join(div_as_md)
+
     soup = BeautifulSoup(content, features='html.parser')
-    for div in soup.find_all('div'):
-        yield div.get_text().replace('\xa0', ' ')
+    for div in soup.body.find_all('div', recursive=False):
+        yield recursive_div(div)
 
 
 markdown = mistune.create_markdown(renderer=HighlightRenderer(), escape=True)

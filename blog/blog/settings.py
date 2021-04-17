@@ -125,6 +125,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/www/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 WIZ_USERNAME = os.environ.get('WIZ_USERNAME', '')
