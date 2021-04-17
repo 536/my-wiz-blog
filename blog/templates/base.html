@@ -9,10 +9,22 @@
     <title>{{ SYSTEM_TITLE_PREFIX }} | Index</title>
     {% endblock %}
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/components/navgation.css' %}">
     {% block css %}
+    {% endblock %}
+    <script>
+        window.onload = function() {
+            let navLinks = document.getElementsByClassName("nav-link");
+            for (let index = 0; index < navLinks.length; index++) {
+                let element = navLinks[index];
+                if (element.href === window.location.href) {
+                    element.classList.add("active");
+                }
+            }
+        }
+    </script>
+    {% block js %}
     {% endblock %}
 </head>
 <body>
@@ -21,8 +33,12 @@
     <div date-time="{{ query.time }}">{{ query.sql }}</div>
     {% endfor %}
     {% endif %}
+    {% block header %}
     {% include 'components/navigation.html' %}
+    {% endblock %}
     {% block main %}
+    {% endblock %}
+    {% block footer %}
     {% endblock %}
 </body>
 </html>

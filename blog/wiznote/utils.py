@@ -19,7 +19,7 @@ class HighlightRenderer(mistune.HTMLRenderer):
                 lexer = get_lexer_by_name('text', stripall=True)
             formatter = html.HtmlFormatter()
             text = highlight(code, lexer, formatter)
-            text = text[:27] + ' lang="' + lang + text[27:]
+            text = text[:27] + ' lang="' + lang + '"' + text[27:]
         else:
             text = '<pre lang="%s"><code>%s</code></pre>' % (lang, mistune.escape(code))
         return text

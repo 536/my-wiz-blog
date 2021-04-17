@@ -14,7 +14,7 @@
     {% block content %}
     <section>
         {% for doc in docs %}
-        <div>
+        <div class="doc-list">
             <a href="{% url 'wiznote:doc' guid=doc.guid %}">
                 <span>{{ doc.version.title|slice:":-3" }}</span>
                 <span>{{ doc.created|date:'Y/m/d' }}</span>

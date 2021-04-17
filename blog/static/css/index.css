@@ -2,12 +2,3 @@ body {
     justify-content: center;
     align-items: center;
 }
-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: none;
-}
-header>h1 {
-    visibility: visible;
-}

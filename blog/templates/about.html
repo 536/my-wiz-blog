@@ -6,11 +6,19 @@
 {% endblock %}
 
 {% block css %}
+<link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
+{% endblock %}
+
+{% block header %}
+{% include 'components/navigation.html' %}
 {% endblock %}
 
 {% block main %}
 <main class="flex-row-center-center">
     当一个理想主义者（当累了就不当了
 </main>
+{% endblock %}
+
+{% block footer %}
 {% include 'components/footer.html' %}
 {% endblock %}
