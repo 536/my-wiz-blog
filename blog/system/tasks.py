@@ -17,7 +17,8 @@ def update_wiz():
 
 def wiz_periodical_update():
     Tag.objects.update(using=False)
-    with Wiz(username=System.objects.get(key='WIZ_USERNAME'), password=System.objects.get(key='WIZ_PASSWORD')) as wiz:
+    with Wiz(username=System.objects.get(key='WIZ_USERNAME').value,
+             password=System.objects.get(key='WIZ_PASSWORD').value) as wiz:
         # tag
         tags = wiz.get_tags().json()['result']
         Tag.objects.periodical_update(tags)
