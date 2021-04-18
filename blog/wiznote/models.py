@@ -51,7 +51,7 @@ class TagManager(models.Manager):
 
 class CategoryManager(models.Manager):
     def periodical_update(self, categories):
-        wiz_categories = [_ for _ in categories if _.startswith(System.objects.get_key('CATEGORY'))]
+        wiz_categories = [_ for _ in categories if _.startswith(System.objects.get_key('CATEGORY', default='/blog/'))]
 
         for category in self.all():
             if category.name not in wiz_categories:
