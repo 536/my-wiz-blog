@@ -4,10 +4,10 @@ section {
     box-sizing: border-box;
 }
 
-@media screen and (min-width: 1366px) {
-    section {
-        width: 50%;
-    }
+.doc-list {
+    transition: all .3s ease-in-out;
+    padding: 0;
+    border-bottom: 1px dashed var(--color-theme-m);
 }
 
 section>h2 {
@@ -17,12 +17,6 @@ section>h2 {
 
 section>h2::before {
     content: "#";
-}
-
-.doc-list {
-    transition: all .3s ease-in-out;
-    padding: 0 30px;
-    border-bottom: 1px dashed var(--color-theme-m);
 }
 
 .doc-list:hover {
@@ -47,7 +41,20 @@ section>h2::before {
 
 .doc-list>a>span:first-of-type {
     width: calc(100% - 100px);
-    padding: 0 10px;
     overflow: hidden;
     margin-right: 30px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 1366px) {
+    section {
+        width: 50%;
+    }
+    .doc-list {
+        padding: 0 30px;
+    }
+    .doc-list>a>span:first-of-type {
+        padding-left: 10px;
+    }
 }

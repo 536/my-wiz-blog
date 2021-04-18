@@ -3,6 +3,7 @@ from datetime import datetime
 from pathlib import Path
 
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.base import ContentFile
 from django.db import models
 from django.utils.timezone import get_current_timezone
@@ -106,20 +107,25 @@ class DocManager(models.Manager):
                     )
                     resources = note.get('resources') if note.get('resources') else []
                     for resource in resources:
-                        res, created = Resource.objects.get_or_create(name=resource['name'], doc=doc, version=version)
-                        if created:
-                            res.file.save(resource['name'], ContentFile(wiz.session.get(resource['url']).content))
+                        # 仅支持常见图片文件资源
+                        if resource['name'].lower().endswith(('.png', '.jpg', '.jpeg', '.webm', '.gif')):
+                            try:
+                                Resource.objects.get(name=resource['name'], doc=doc, version=version)
+                            except ObjectDoesNotExist:
+                                res = Resource.objects.create(name=resource['name'], doc=doc, version=version)
+                                res.file.save(resource['name'], ContentFile(wiz.session.get(resource['url']).content))
 
-                            version.html = version.html.replace(
-                                'index_files/%s' % res.name,
-                                '%s%s/%s/index_files/%s' % (
-                                    settings.MEDIA_URL,
-                                    doc.guid,
-                                    version.version,
-                                    res.name
+                                # 更新html文档中的链接
+                                version.html = version.html.replace(
+                                    'index_files/%s' % res.name,
+                                    '%s%s/%s/index_files/%s' % (
+                                        settings.MEDIA_URL,
+                                        doc.guid,
+                                        version.version,
+                                        res.name
+                                    )
                                 )
-                            )
-                            version.save()
+                                version.save()
                     break
 
 

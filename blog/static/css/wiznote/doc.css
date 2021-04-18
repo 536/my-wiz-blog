@@ -1,13 +1,10 @@
+::marker {
+    font-size: 0;
+}
+
 article {
     width: 100%;
     overflow-x: hidden;
-    padding: 30px;
-}
-
-@media screen and (min-width: 1366px) {
-    article {
-        width: 50%;
-    }
 }
 
 main {
@@ -77,4 +74,18 @@ p>img {
 .tags>a:hover {
     text-decoration: revert;
     color: var(--color-theme-m);
+}
+
+span.linenos {
+    display: none;
+}
+
+@media screen and (min-width: 1366px) {
+    article {
+        width: 50%;
+        padding: 30px;
+    }
+    span.linenos {
+        display: inline;
+    }
 }
