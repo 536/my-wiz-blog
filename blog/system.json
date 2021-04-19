@@ -1,23 +1,23 @@
 [
-  {
+{
     "model": "system.system",
     "pk": "CATEGORY",
     "fields": {
-      "value": "/blog/"
+        "value": "/blog/"
     }
-  },
-  {
+},
+{
     "model": "system.system",
-    "pk": "SYSTEM_TITLE_PREFIX",
+    "pk": "TITLE_PREFIX",
     "fields": {
-      "value": "Hi"
+        "value": "Hi"
     }
-  },
-  {
+},
+{
     "model": "system.system",
-    "pk": "SYSTEM_SOCIAL_GITHUB",
+    "pk": "SOCIAL_GITHUB",
     "fields": {
-      "value": "https://github.com/536/"
+        "value": "https://github.com/536/"
     }
-  }
+}
 ]
