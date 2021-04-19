@@ -1,0 +1,26 @@
+section {
+    text-align: center;
+}
+
+.tag-link {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px;
+    transition: all .2s ease-in-out;
+}
+
+.tag-link:hover {
+    text-decoration: underline;
+    background: var(--color-light-background);
+}
+
+.tag-link::before {
+    content: "#";
+}
+
+@media screen and (min-width: 1366px) {
+    section {
+        width: 50%;
+        padding: 30px;
+    }
+}

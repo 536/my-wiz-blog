@@ -4,12 +4,6 @@ section {
     box-sizing: border-box;
 }
 
-.doc-list {
-    transition: all .3s ease-in-out;
-    padding: 0;
-    border-bottom: 1px dashed var(--color-theme-m);
-}
-
 section>h2 {
     color: var(--color-text);
     margin: 30px 0;
@@ -17,6 +11,16 @@ section>h2 {
 
 section>h2::before {
     content: "#";
+}
+
+.doc-list {
+    transition: all .3s ease-in-out;
+    padding: 0;
+    border-bottom: 1px dashed var(--color-theme-m);
+}
+
+.doc-list:first-of-type {
+    border-top: 1px dashed var(--color-theme-m);
 }
 
 .doc-list:hover {
@@ -45,6 +49,10 @@ section>h2::before {
     margin-right: 30px;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.doc-list>a>span:last-of-type {
+    color: var(--color-light-text);
 }
 
 @media screen and (min-width: 1366px) {

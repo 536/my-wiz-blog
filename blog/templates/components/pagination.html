@@ -1,0 +1,8 @@
+<div class="pagination flex-row-center-center">
+    {% if page.has_previous %}
+    <a class="flex-row-center-center theme-m" href="{% url 'wiznote:category' page.previous_page_number %}">上一页</a>
+    {% endif %}
+    {% if page.has_next %}
+    <a class="flex-row-center-center theme-m" href="{% url 'wiznote:category' page.next_page_number %}">下一页</a>
+    {% endif %}
+</div>

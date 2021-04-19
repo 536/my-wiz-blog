@@ -9,7 +9,7 @@
     --color-red: #FF612F;
     --color-primary: #E8371A;
     --color-light-text: rgba(0, 0, 0, 0.38);
-    --color-text: rgba(0, 0, 0, 0.68);
+    --color-text: #000;
     --color-heading: rgba(0, 0, 0, 0.98);
     --color-code: #F55826;
     --color-autodoc-background: rgba(245, 88, 38, .05);
@@ -91,6 +91,10 @@ main {
 
 h1 {
     text-align: center;
+}
+
+article {
+    color: var(--color-text);
 }
 
 .flex-row-center, .flex-row-center-center, .flex-column-center, .flex-column-center-center {

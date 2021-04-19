@@ -9,7 +9,7 @@ from . import views
 app_name = 'wiznote'
 
 urlpatterns = [
-    path('category/', views.CategoryView.as_view(), name='category'),
+    path('category/<int:page>/', views.CategoryView.as_view(), name='category'),
     path('tags/', views.TagsView.as_view(), name='tags'),
     path('tag/<uuid:guid>/', views.TagView.as_view(), name='tag'),
     path('doc/<uuid:guid>/', views.DocView.as_view(), name='doc'),

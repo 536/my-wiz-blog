@@ -6,6 +6,8 @@
 {% endblock %}
 
 {% block css %}
+<link rel="stylesheet" href="{% static 'css/components/pagination.css' %}">
+<link rel="stylesheet" href="{% static 'css/wiznote/category.css' %}">
 <link rel="stylesheet" href="{% static 'css/wiznote/components/doc-list.css' %}">
 {% endblock %}
 
@@ -13,7 +15,7 @@
 <main class="flex-column-center">
     {% block content %}
     <section>
-        {% for doc in docs %}
+        {% for doc in page %}
         <div class="doc-list">
             <a href="{% url 'wiznote:doc' guid=doc.guid %}">
                 <span>{{ doc.version.title|slice:":-3" }}</span>
@@ -22,6 +24,9 @@
         </div>
         {% endfor %}
     </section>
+    {% endblock %}
+    {% block pagination %}
+    {% include 'components/pagination.html' %}
     {% endblock %}
 </main>
 {% endblock %}

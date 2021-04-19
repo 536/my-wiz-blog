@@ -6,15 +6,15 @@
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/wiznote/components/doc-list.css' %}">
+<link rel="stylesheet" href="{% static 'css/wiznote/tags.css' %}">
 {% endblock %}
 
 {% block main %}
-<main class="flex-column-center user-select-none">
+<main class="flex-column-center-center user-select-none">
     {% block content %}
     <section>
         {% for tag in tags %}
-        {% include 'wiznote/components/doc-list.html' %}
+        <a class="tag-link theme-m" href="{% url 'wiznote:tag' tag.guid %}">{{ tag.name }}</a>
         {% endfor %}
     </section>
     {% endblock %}

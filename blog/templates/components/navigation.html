@@ -1,8 +1,8 @@
 <header class="user-select-none">
     <h1><a href="{% url 'index' %}">Hi!</a></h1>
     <nav class="flex-row-center-center">
-        <a class="flex-row-center-center nav-link" href="{% url 'wiznote:category' %}">Category</a>
-        <a class="flex-row-center-center nav-link" href="{% url 'wiznote:tags' %}">Tag</a>
+        <a class="flex-row-center-center nav-link" href="{% url 'wiznote:category' 1 %}">Category</a>
+        <a class="flex-row-center-center nav-link" href="{% url 'wiznote:tags' %}">Tags</a>
         <a class="flex-row-center-center nav-link" href="{% url 'about' %}">About</a>
     </nav>
 </header>

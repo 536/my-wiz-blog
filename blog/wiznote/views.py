@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.views import View
 
@@ -5,16 +6,17 @@ from wiznote.models import Doc, Category, Tag
 
 
 class CategoryView(View):
-    def get(self, request):
+    def get(self, request, page: int = 1):
         docs = Doc.objects.select_related().all()
+        paginator = Paginator(docs.order_by('-created'), 24)
         return render(request, template_name='wiznote/category.html', context={
-            'docs': docs,
+            'page': paginator.get_page(page),
         })
 
 
 class TagsView(View):
     def get(self, request):
-        tags = Tag.objects.prefetch_related().all()
+        tags = Tag.objects.all()
         return render(request, template_name='wiznote/tags.html', context={
             'tags': tags
         })
