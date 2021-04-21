@@ -14,6 +14,7 @@ section>h2::before {
 }
 
 .doc-list {
+    width: 100%;
     transition: all .3s ease-in-out;
     padding: 0;
     border-bottom: 1px dashed var(--color-theme-m);
@@ -43,12 +44,18 @@ section>h2::before {
     position: relative;
 }
 
-.doc-list>a>span:first-of-type {
+span.title {
     width: calc(100% - 100px);
     overflow: hidden;
-    margin-right: 30px;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin: 0 10px;
+    fill: var(--color-theme-m);
 }
 
 .doc-list>a>span:last-of-type {
@@ -60,9 +67,6 @@ section>h2::before {
         width: 50%;
     }
     .doc-list {
-        padding: 0 30px;
-    }
-    .doc-list>a>span:first-of-type {
-        padding-left: 10px;
+        padding-right: 20px;
     }
 }

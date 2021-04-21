@@ -8,9 +8,11 @@ from wiznote.models import Doc, Category, Tag
 class CategoryView(View):
     def get(self, request, page: int = 1):
         docs = Doc.objects.select_related().all()
-        paginator = Paginator(docs.order_by('-created'), 24)
+        paginator = Paginator(docs.order_by('-created'), 15)
         return render(request, template_name='wiznote/category.html', context={
             'page': paginator.get_page(page),
+            'pageRange': paginator.get_elided_page_range(page, on_ends=0),
+            'ellipsis': paginator.ELLIPSIS,
         })
 
 

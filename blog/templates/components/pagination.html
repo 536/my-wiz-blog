@@ -1,8 +1,67 @@
 <div class="pagination flex-row-center-center">
-    {% if page.has_previous %}
-    <a class="flex-row-center-center theme-m" href="{% url 'wiznote:category' page.previous_page_number %}">上一页</a>
-    {% endif %}
-    {% if page.has_next %}
-    <a class="flex-row-center-center theme-m" href="{% url 'wiznote:category' page.next_page_number %}">下一页</a>
-    {% endif %}
+    {% ifnotequal page.number 1 %}
+    <a href="{% url 'wiznote:category' 1 %}" style="transform: rotate(-180deg);">
+        <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+            <g fill-rule="evenodd">
+                <path d="M12 7.41L13.41 6l6 6-6 6L12 16.59 16.58 12 12 7.41z"></path>
+                <path d="M5 7.41L6.41 6l6 6-6 6L5 16.59 9.58 12 5 7.41z"></path>
+            </g>
+        </svg>
+    </a>
+    {% else %}
+    <a style="transform: rotate(-180deg);">
+        <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+            <g fill-rule="evenodd">
+                <path d="M12 7.41L13.41 6l6 6-6 6L12 16.59 16.58 12 12 7.41z"></path>
+                <path d="M5 7.41L6.41 6l6 6-6 6L5 16.59 9.58 12 5 7.41z"></path>
+            </g>
+        </svg>
+    </a>
+    {% endifnotequal %}
+    <a {% if page.has_previous %}href="{% url 'wiznote:category' page.previous_page_number %}" {% endif %}
+        style="transform: rotate(90deg);">
+        <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+            <g>
+                <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
+            </g>
+        </svg>
+    </a>
+    {% for number in pageRange %}
+    {% ifequal number page.number %}
+    <a class="flex-row-center-center disabled-page">{{ number }}</a>
+    {% else %}
+    {% ifequal number ellipsis %}
+    <a class="disabled-page">{{ number }}</a>
+    {% else %}
+    <a href="{% url 'wiznote:category' number %}">{{ number }}</a>
+    {% endifequal %}
+    {% endifequal %}
+    {% endfor %}
+    <a {% if page.has_next %}href="{% url 'wiznote:category' page.next_page_number %}" {% endif %}
+        style="transform: rotate(-90deg);">
+        <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+            <g>
+                <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
+            </g>
+        </svg>
+    </a>
+    {% ifnotequal page.number page.paginator.num_pages %}
+    <a href="{% url 'wiznote:category' page.paginator.num_pages %}">
+        <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+            <g fill-rule="evenodd">
+                <path d="M12 7.41L13.41 6l6 6-6 6L12 16.59 16.58 12 12 7.41z"></path>
+                <path d="M5 7.41L6.41 6l6 6-6 6L5 16.59 9.58 12 5 7.41z"></path>
+            </g>
+        </svg>
+    </a>
+    {% else %}
+    <a>
+        <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+            <g fill-rule="evenodd">
+                <path d="M12 7.41L13.41 6l6 6-6 6L12 16.59 16.58 12 12 7.41z"></path>
+                <path d="M5 7.41L6.41 6l6 6-6 6L5 16.59 9.58 12 5 7.41z"></path>
+            </g>
+        </svg>
+    </a>
+    {% endifnotequal %}
 </div>

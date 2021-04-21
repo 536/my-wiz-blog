@@ -2,18 +2,33 @@
 {% load static %}
 
 {% block title %}
-<title>{{ SYSTEM_TITLE_PREFIX }} | Tag</title>
+<title>{{ SYSTEM_TITLE_PREFIX }} | {{ tag.name }}</title>
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/wiznote/components/doc-list.css' %}">
+<link rel="stylesheet" href="{% static 'css/wiznote/doc-list.css' %}">
 {% endblock %}
 
 {% block main %}
 <main class="flex-column-center user-select-none">
     {% block content %}
     <section>
-        {% include 'wiznote/components/doc-list.html' %}
+        <h2 class="theme-m">{{ tag.name }}</h2>
+        {% for docversion in tag.docversion_set.all %}
+        <div class="doc-list">
+            <a href="{% url 'wiznote:doc' guid=docversion.doc_set.first.guid %}">
+                <span class="icon">
+                    <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M746.666667 85.333333H277.333333a106.773333 106.773333 0 0 0-106.666666 106.666667v640a106.773333 106.773333 0 0 0 106.666666 106.666667h469.333334a106.773333 106.773333 0 0 0 106.666666-106.666667V192a106.773333 106.773333 0 0 0-106.666666-106.666667zM490.666667 682.666667h-128a21.333333 21.333333 0 0 1 0-42.666667h128a21.333333 21.333333 0 0 1 0 42.666667z m170.666666-128H362.666667a21.333333 21.333333 0 0 1 0-42.666667h298.666666a21.333333 21.333333 0 0 1 0 42.666667z m0-128H362.666667a21.333333 21.333333 0 0 1 0-42.666667h298.666666a21.333333 21.333333 0 0 1 0 42.666667z m0-128H362.666667a21.333333 21.333333 0 0 1 0-42.666667h298.666666a21.333333 21.333333 0 0 1 0 42.666667z">
+                        </path>
+                    </svg>
+                </span>
+                <span class="title">{{ docversion.title|slice:":-3" }}</span>
+                <span>{{ docversion.doc_set.first.created|date:'Y/m/d' }}</span>
+            </a>
+        </div>
+        {% endfor %}
     </section>
     {% endblock %}
 </main>
