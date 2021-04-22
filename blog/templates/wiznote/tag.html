@@ -14,9 +14,9 @@
     {% block content %}
     <section>
         <h2 class="theme-m">{{ tag.name }}</h2>
-        {% for docversion in tag.docversion_set.all %}
+        {% for doc in tag.doc_set.all %}
         <div class="doc-list">
-            <a href="{% url 'wiznote:doc' guid=docversion.doc_set.first.guid %}">
+            <a href="{{ doc.share.url }}">
                 <span class="icon">
                     <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -24,8 +24,8 @@
                         </path>
                     </svg>
                 </span>
-                <span class="title">{{ docversion.title|slice:":-3" }}</span>
-                <span>{{ docversion.doc_set.first.created|date:'Y/m/d' }}</span>
+                <span class="title">{{ doc.title|slice:":-3" }}</span>
+                <span>{{ doc.created|date:'Y/m/d' }}</span>
             </a>
         </div>
         {% endfor %}
