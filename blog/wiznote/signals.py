@@ -12,10 +12,11 @@ from wiznote.models import Share
 
 @receiver(models.signals.post_save, sender=Share)
 def post_save(sender, instance, **kwargs):
-    with Wiz(username=System.objects.get(key='WIZ_USERNAME').value,
-             password=System.objects.get(key='WIZ_PASSWORD').value) as wiz:
-        wiz.create_or_update_share(
-            docGuid=instance.doc_set.guid,
-            password=instance.password,
-            expiredAt=instance.expiredAt.strftime('%Y-%m-%d %H:%M:%S') if instance.expiredAt else '',
-        )
+    if instance.password or instance.expiredAt:
+        with Wiz(username=System.objects.get(key='WIZ_USERNAME').value,
+                 password=System.objects.get(key='WIZ_PASSWORD').value) as wiz:
+            wiz.create_or_update_share(
+                docGuid=instance.doc_set.first().guid,
+                password=instance.password,
+                expiredAt=instance.expiredAt.strftime('%Y-%m-%d %H:%M:%S') if instance.expiredAt else '',
+            )
