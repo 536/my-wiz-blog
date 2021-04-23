@@ -43,6 +43,8 @@ def wiz_periodical_update():
             if root and _.startswith(root)
         ]
 
+        docs_all = []
+
         for category in categories:
             docs = [
                 _ for _ in wiz.get_notes_of_folder(
@@ -54,7 +56,7 @@ def wiz_periodical_update():
                 if _['title'].endswith('.md')
             ]
 
-            Doc.objects.exclude(guid__in=[_['docGuid'] for _ in docs]).delete()
+            docs_all.append(docs)
 
             for _ in docs:
                 try:
@@ -97,3 +99,6 @@ def wiz_periodical_update():
         for tag in Tag.objects.all():
             if not tag.doc_set.exists():
                 tag.delete()
+
+        Doc.objects.exclude(guid__in=[_['docGuid'] for _ in docs_all]).delete()
+
