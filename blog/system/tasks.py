@@ -56,7 +56,7 @@ def wiz_periodical_update():
                 if _['title'].endswith('.md')
             ]
 
-            docs_all.append(docs)
+            docs_all.extend(docs)
 
             for _ in docs:
                 try:
@@ -101,4 +101,3 @@ def wiz_periodical_update():
                 tag.delete()
 
         Doc.objects.exclude(guid__in=[_['docGuid'] for _ in docs_all]).delete()
-
