@@ -5,7 +5,7 @@ if [ ! -n "$1" ]; then #$1：指该脚本后跟的第一个参数，-n：判断$
     echo "Usages: sh uwsgi.sh [start|stop|restart]"
 fi
 
-psid=$(ps aux | grep "uwsgi" | grep -v "grep" | wc -l)psid=$(ps aux | grep "uwsgi" | grep -v "grep" | wc -l)
+psid=$(ps aux | grep "uwsgi" | grep -v "grep" | wc -l)
 
 if [ $1 = start ]; then #如果第一个参数等于start，执行下面命令
     #上面执行了启动之后，判断启动是否正常，grep -v过滤掉“grep”，使用wc -l查看输出几行
