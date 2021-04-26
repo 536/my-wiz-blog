@@ -46,7 +46,6 @@ header>h1>a, .nav-link {
 .nav-link::after {
     content: "";
     position: absolute;
-    width: 100%;
     height: 3px;
     bottom: 0;
     left: 50%;
@@ -58,4 +57,4 @@ header>h1>a, .nav-link {
 .nav-link.active::after, .nav-link:hover::after {
     left: 0;
     right: 0;
-} 
+}
