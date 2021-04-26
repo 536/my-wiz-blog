@@ -12,7 +12,7 @@ if [ $1 = start ]; then #如果第一个参数等于start，执行下面命令
     if [[ $psid -gt 4 ]]; then
         echo "uwsgi is running!"
     else
-        uwsgi --ini /www/my-wiz-blog/uwsgi/uwsgi.ini
+        uwsgi --ini /www/my-wiz-blog/uwsgi/uwsgi.ini &
         echo "Start uwsgi service [OK]"
     fi
 
@@ -23,7 +23,7 @@ elif [ $1 = restart ]; then
     if [ ! -a "/www/my-wiz-blog/uwsgi/uwsgi.pid" ]; then
         uwsgi --reload /www/my-wiz-blog/uwsgi/uwsgi.pid
     else
-        uwsgi --ini /www/my-wiz-blog/uwsgi/uwsgi.ini
+        uwsgi --ini /www/my-wiz-blog/uwsgi/uwsgi.ini &
     fi
     echo "Restart uwsgi service [OK]"
 else
