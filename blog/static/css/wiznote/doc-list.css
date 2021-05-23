@@ -25,7 +25,6 @@ section>h2::before {
 }
 
 .doc-list:hover {
-    border-bottom-style: solid;
     background: var(--color-light-background);
 }
 
