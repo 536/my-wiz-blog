@@ -15,6 +15,13 @@
 },
 {
     "model": "system.system",
+    "pk": "SOCIAL_DOUBAN",
+    "fields": {
+        "value": "https://www.douban.com/people/123507384/"
+    }
+},
+{
+    "model": "system.system",
     "pk": "SOCIAL_GITHUB",
     "fields": {
         "value": "https://github.com/536/"
