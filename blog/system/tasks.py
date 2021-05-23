@@ -46,15 +46,12 @@ def wiz_periodical_update():
         docs_all = []
 
         for category in categories:
-            docs = [
-                _ for _ in wiz.get_notes_of_folder(
-                    category=category,
-                    withAbstract=False,
-                    start=0,
-                    count=50
-                ).json()['result']
-                if _['title'].endswith('.md')
-            ]
+            docs = wiz.get_notes_of_folder(
+                category=category,
+                withAbstract=False,
+                start=0,
+                count=50
+            ).json()['result']
 
             docs_all.extend(docs)
 
