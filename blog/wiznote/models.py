@@ -28,7 +28,6 @@ class Doc(models.Model):
 
     category = models.CharField(max_length=200, verbose_name='文件夹名称')
     title = models.CharField(max_length=200, verbose_name='文章标题')
-    text = models.TextField(null=True, verbose_name='html格式正文')
 
     tags = models.ManyToManyField(to=Tag)
 

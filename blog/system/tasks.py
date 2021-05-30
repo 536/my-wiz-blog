@@ -16,10 +16,6 @@ from wiznote.models import Tag, Doc, Share
 
 @shared_task
 def update_wiz():
-    wiz_periodical_update()
-
-
-def wiz_periodical_update():
     with Wiz(username=System.objects.get(key='WIZ_USERNAME').value,
              password=System.objects.get(key='WIZ_PASSWORD').value) as wiz:
         # tag
@@ -56,22 +52,20 @@ def wiz_periodical_update():
             docs_all.extend(docs)
 
             for _ in docs:
+                print(_['title'])
                 try:
                     doc = Doc.objects.get(guid=_['docGuid'])
                 except ObjectDoesNotExist:
+                    shares = Share.objects.get_or_create(
+                        url=wiz.create_or_update_share(docGuid=_['docGuid']).json()['shareUrl']
+                    )
                     doc = Doc.objects.create(
                         guid=_['docGuid'],
                         version=_['version'],
                         created=datetime.fromtimestamp(_['created'] / 1000, tz=get_current_timezone()),
                         category=_['category'],
                         title=_['title'],
-                        text=BeautifulSoup(
-                            wiz.get_note_view(_['docGuid']).content,
-                            features='html.parser'
-                        ).body.get_text().replace('\xa0', ' '),
-                        share=Share.objects.get_or_create(
-                            url=wiz.create_or_update_share(docGuid=_['docGuid']).json()['shareUrl']
-                        )[0]
+                        share=shares[0]
                     )
                     tags = _.get('tags').split('*') if _.get('tags') else []
                     doc.tags.clear()
