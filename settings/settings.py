@@ -12,12 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv, find_dotenv
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-load_dotenv(find_dotenv(filename=BASE_DIR / '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -83,11 +79,11 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog',
-        'USER': os.environ.get('DATABASES_DEFAULT_USER', 'root'),
-        'PASSWORD': os.environ.get('DATABASES_DEFAULT_PASSWORD', ''),
-        'HOST': os.environ.get('DATABASES_DEFAULT_HOST', '127.0.0.1'),
-        'PORT': os.environ.get('DATABASES_DEFAULT_PORT', 3306),
+        'NAME': os.environ.get('DATABASES_DEFAULT_NAME'),
+        'USER': 'root',
+        'PASSWORD': os.environ.get('DATABASES_DEFAULT_PASSWORD'),
+        'HOST': 'mysql',
+        'PORT': 3306,
     }
 }
 
