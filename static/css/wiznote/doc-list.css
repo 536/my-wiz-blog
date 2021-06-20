@@ -5,7 +5,6 @@ section {
 }
 
 section>h2 {
-    color: var(--color-text);
     margin: 30px 0;
 }
 
@@ -17,11 +16,11 @@ section>h2::before {
     width: 100%;
     transition: all .3s ease-in-out;
     padding: 0;
-    border-bottom: 1px dashed var(--color-theme-m);
+    border-bottom: 1px dashed var(--color-theme);
 }
 
 .doc-list:first-of-type {
-    border-top: 1px dashed var(--color-theme-m);
+    border-top: 1px dashed var(--color-theme);
 }
 
 .doc-list:hover {
@@ -48,17 +47,18 @@ span.title {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    color: var(--color-text-light);
+}
+
+span.date {
+    color: var(--color-text-light);
 }
 
 .icon {
     width: 24px;
     height: 24px;
     margin: 0 10px;
-    fill: var(--color-theme-m);
-}
-
-.doc-list>a>span:last-of-type {
-    color: var(--color-light-text);
+    fill: var(--color-theme);
 }
 
 @media screen and (min-width: 1366px) {

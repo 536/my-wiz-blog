@@ -3,13 +3,12 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    box-shadow: 0 0 5px 0 var(--color-light-text);
 }
 
 header>h1 {
     width: 60px;
     height: 60px;
-    background: var(--color-header-h1-background);
+    background: var(--color-theme);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -17,7 +16,7 @@ header>h1 {
 }
 
 header>h1>a {
-    color: var(--color-header-h1-text);
+    color: var(--color-header-text);
 }
 
 header>nav {
@@ -33,7 +32,7 @@ header>h1>a, .nav-link {
 }
 
 .nav-link {
-    color: var(--color-header-nav-text);
+    color: var(--color-theme);
     position: relative;
     padding: 0 10px;
     height: 100%;

@@ -14,7 +14,7 @@
     {% block content %}
     <section>
         {% for tag in tags %}
-        <a class="tag-link theme-m" href="{% url 'wiznote:tag' tag.guid %}">{{ tag.name }}</a>
+        <a class="tag-link theme" href="{% url 'wiznote:tag' tag.guid %}">{{ tag.name }}</a>
         {% endfor %}
     </section>
     {% endblock %}

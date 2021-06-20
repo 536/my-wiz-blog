@@ -13,7 +13,7 @@
 <main class="flex-column-center user-select-none">
     {% block content %}
     <section>
-        <h2 class="theme-m">{{ tag.name }}</h2>
+        <h2 class="theme">{{ tag.name }}</h2>
         {% for doc in tag.doc_set.all %}
         <div class="doc-list">
             <a href="{{ doc.share.url }}">
@@ -25,7 +25,7 @@
                     </svg>
                 </span>
                 <span class="title" title="{{ doc.title }}">{{ doc.title }}</span>
-                <span>{{ doc.created|date:'Y/m/d' }}</span>
+                <span class="date">{{ doc.created|date:'Y/m/d' }}</span>
             </a>
         </div>
         {% endfor %}

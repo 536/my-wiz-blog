@@ -1,37 +1,40 @@
 :root {
-    --color-blue: #03A9F4;
-    --color-blue-alpha: rgba(3, 172, 244, 0.08);
-    --color-green: #49C784;
-    --color-yellow: #F7BA2A;
-    --color-purple: #b37feb;
-    --color-cyan: #36cfc9;
-    --color-magenta: #f759ab;
-    --color-red: #FF612F;
-    --color-primary: #E8371A;
-    --color-light-text: rgba(0, 0, 0, 0.38);
-    --color-text: #000;
-    --color-heading: rgba(0, 0, 0, 0.98);
-    --color-code: #F55826;
-    --color-autodoc-background: rgba(245, 88, 38, .05);
-    --color-autodoc-border: rgba(245, 88, 38, .4);
     --font-english: "Roboto", "Helvetica Neue", "Helvetica";
     --font-cjk: "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei";
     --font-text: var(--font-english), var(--font-cjk), sans-serif;
     --font-code: "Roboto Mono", Menlo, monospace;
-    --color-header-h1-background: teal;
-    --color-header-h1-text: rgb(255, 255, 255, 0.8);
-    --color-header-nav-text: teal;
-    --color-theme-m: teal;
-    --color-link: #448AFF;
-    --background: rgb(255, 255, 255, 0.8);
-    --color-theme: #92b3b1;
-    --code-background: #F6F8FA;
-    --color-light-background: rgb(50, 162, 156, 0.1);
-    --color-selection-background: rgb(50, 162, 156, 0.2);
+    --color-theme: teal;
+    --background-color: #FAFBFC;
+    --background-color-header: #FAFBFC;
+    --background-color-main: #FAFBFC;
+    --code-background: #21252B;
+    --color-light-background: #CCE6E6;
+    --color-text-light: #040405;
+    --color-text: slategrey;
+    --color-header-text: #CCE6E6;
+    --background-color-selection: #CCE6E6;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-theme: teal;
+        --background-color: #0D1117;
+        --background-color-header: #161B22;
+        --background-color-main: #0D1117;
+        --code-background: #21252B;
+        --color-light-background: #21252B;
+        --color-text-light: lightslategrey;
+        --color-text: slategrey;
+        --color-header-text: #21252B;
+        --background-color-selection: #142E31;
+    }
+    img {
+        opacity: .75;
+    }
 }
 
 ::selection {
-    background: var(--color-selection-background);
+    background: var(--background-color-selection);
 }
 
 ::-webkit-scrollbar {
@@ -46,21 +49,9 @@
     padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #21252B;
-        --color-theme: #1DA57A;
-        --code-background: #21252B;
-        --color-light-background: #21252B;
-    }
-    img {
-        opacity: .75;
-    }
-}
-
 html {
     height: 100%;
-    background: var(--background);
+    background: var(--background-color);
 }
 
 body {
@@ -68,6 +59,7 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
+    background: var(--background-color);
 }
 
 main {
@@ -100,6 +92,15 @@ article {
     user-select: none;
 }
 
-.theme-m {
-    color: var(--color-theme-m);
+.theme {
+    color: var(--color-theme);
+}
+
+header {
+    background-color: var(--background-color-header);
+}
+
+main {
+    background-color: var(--background-color-main);
+    color: var(--color-text);
 }
