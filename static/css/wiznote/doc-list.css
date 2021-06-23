@@ -16,14 +16,13 @@ section>h2::before {
     width: 100%;
     transition: all .3s ease-in-out;
     padding: 0;
-    border-bottom: 1px dashed var(--color-theme);
 }
 
-.doc-list:first-of-type {
-    border-top: 1px dashed var(--color-theme);
+.doc-list:first-of-type>a {
+    border-top: 1px solid var(--color-text);
 }
 
-.doc-list:hover {
+.doc-list>a:hover {
     background: var(--color-light-background);
 }
 
@@ -38,8 +37,11 @@ section>h2::before {
     justify-content: space-between;
     align-items: center;
     height: 40px;
-    color: var(--color-text);
     position: relative;
+    transition: all 0.2s ease-in-out;
+    border-bottom: 1px solid var(--color-text);
+    color: var(--color-text);
+    fill: var(--color-text);
 }
 
 span.title {
@@ -47,25 +49,22 @@ span.title {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    color: var(--color-text-light);
-}
-
-span.date {
-    color: var(--color-text-light);
 }
 
 .icon {
     width: 24px;
     height: 24px;
     margin: 0 10px;
-    fill: var(--color-theme);
 }
 
 @media screen and (min-width: 1366px) {
     section {
         width: 50%;
     }
-    .doc-list {
+    /* .doc-list {
         padding-right: 20px;
+    } */
+    span.date {
+        margin-right: 20px;
     }
 }

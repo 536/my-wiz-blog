@@ -21,6 +21,8 @@ from django.urls import path, include
 from system import views
 
 urlpatterns = [
+    path('i18n/', include('django.conf.urls.i18n')),
+
     path('admin/', admin.site.urls),
 
     path('', views.IndexView.as_view(), name='index'),

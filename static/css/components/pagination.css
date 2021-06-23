@@ -1,6 +1,5 @@
 .pagination {
-    margin: 10px 0;
-    user-select: none;
+    margin: 20px 0;
 }
 
 .pagination a {
@@ -9,24 +8,24 @@
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     border-radius: 2px;
-    background-color: var(--background-color-header);
     transition: all .3s ease-in-out;
-    fill: #8F9EA8;
-    color: #8F9EA8;
+    background-color: var(--background-color-header);
+    color: var(--color-header-text);
 }
 
-.pagination a[href] {
-    fill: var(--color-theme);
-    color: var(--color-theme);
+.pagination a.link {
+    fill: var(--color-header-text);
+    color: var(--color-header-text);
 }
 
 .pagination a:not(:first-of-type) {
     margin-left: 4px;
 }
 
-.pagination a:hover {
-    background: var(--color-light-background);
+.pagination a.current, .pagination a.link:hover {
+    background: var(--color-header-hover-text);
+    opacity: 0.5;
 }

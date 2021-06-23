@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+{% load i18n %}
+<html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     {% block title %}
-    <title>{{ SYSTEM_TITLE_PREFIX }} | Index</title>
     {% endblock %}
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/components/navgation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/navigation.css' %}">
     {% block css %}
     {% endblock %}
     <script>
-        window.onload = function() {
+        window.onload = function () {
             let navLinks = document.getElementsByClassName("nav-link");
             for (let index = 0; index < navLinks.length; index++) {
                 let element = navLinks[index];
@@ -27,18 +28,44 @@
     {% block js %}
     {% endblock %}
 </head>
-<body>
-    {% if not debug %}
-    {% for query in sql_queries %}
-    <div date-time="{{ query.time }}">{{ query.sql }}</div>
-    {% endfor %}
-    {% endif %}
+
+<body class="relative flex-column">
     {% block header %}
-    {% include 'components/navigation.html' %}
+    <header>
+        <h1><a href="{% url 'index' %}">Hi!</a></h1>
+        <nav class="flex-row-center-center">
+            <a class="flex-row-center-center nav-link" href="{% url 'wiznote:category' 1 %}">
+                {% translate "Category" %}
+            </a>
+            <a class="flex-row-center-center nav-link" href="{% url 'wiznote:tags' %}">
+                {% translate "Tags" %}
+            </a>
+            <a class="flex-row-center-center nav-link" href="{% url 'about' %}">
+                {% translate "About" %}
+            </a>
+        </nav>
+    </header>
     {% endblock %}
     {% block main %}
     {% endblock %}
     {% block footer %}
     {% endblock %}
+    <div class="language">
+        <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            <select name="language" onchange="this.form.submit();">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                <option value="{{ language.code }}" {% ifequal language.code LANGUAGE_CODE %} selected{% endifequal %}>
+                    {{ language.name_local }}
+                </option>
+                {% endfor %}
+            </select>
+        </form>
+    </div>
 </body>
+
 </html>

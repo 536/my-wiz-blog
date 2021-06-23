@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
-<title>{{ SYSTEM_TITLE_PREFIX }} | Category</title>
+<title>{{ SYSTEM_TITLE_PREFIX }} | {% translate "Category" %}</title>
 {% endblock %}
 
 {% block css %}
@@ -31,7 +32,20 @@
         </div>
         {% endfor %}
         {% block pagination %}
-        {% include 'components/pagination.html' %}
+        <div class="pagination flex-row-center-center">
+            {% for number in pageRange %}
+            {% ifequal number page.number %}
+            <a class="disabled current">{{ number }}</a>
+            {% else %}
+            {% ifequal number ellipsis %}
+            <a class="disabled">{{ number }}</a>
+            {% else %}
+            <a class="link" href="{% url 'wiznote:category' number %}">{{ number }}</a>
+            {% endifequal %}
+            {% endifequal %}
+            {% endfor %}
+        </div>
+
         {% endblock %}
         {% endblock %}
     </section>

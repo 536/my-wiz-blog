@@ -8,7 +8,6 @@ header {
 header>h1 {
     width: 60px;
     height: 60px;
-    background: var(--color-theme);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -32,14 +31,14 @@ header>h1>a, .nav-link {
 }
 
 .nav-link {
-    color: var(--color-theme);
+    color: var(--color-header-text);
     position: relative;
     padding: 0 10px;
     height: 100%;
 }
 
 .nav-link.active, .nav-link:hover {
-    background: var(--color-light-background);
+    background: var(--color-header-hover-text);
 }
 
 .nav-link::after {

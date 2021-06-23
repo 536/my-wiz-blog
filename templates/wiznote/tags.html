@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
-<title>{{ SYSTEM_TITLE_PREFIX }} | Tags</title>
+<title>{{ SYSTEM_TITLE_PREFIX }} | {% translate "Tags" %}</title>
 {% endblock %}
 
 {% block css %}
@@ -10,7 +11,7 @@
 {% endblock %}
 
 {% block main %}
-<main class="flex-column-center-center user-select-none">
+<main class="flex-column-center-center">
     {% block content %}
     <section>
         {% for tag in tags %}
