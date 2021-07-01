@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/components/navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
     {% block css %}
     {% endblock %}
     <script>
@@ -49,23 +50,23 @@
     {% block main %}
     {% endblock %}
     {% block footer %}
-    {% endblock %}
-    <div class="language">
-        <form action="{% url 'set_language' %}" method="post">
-            {% csrf_token %}
-            <input name="next" type="hidden" value="{{ redirect_to }}">
-            <select name="language" onchange="this.form.submit();">
+    <footer>
+        <div class="language">
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
                 {% get_current_language as LANGUAGE_CODE %}
                 {% get_available_languages as LANGUAGES %}
                 {% get_language_info_list for LANGUAGES as languages %}
                 {% for language in languages %}
-                <option value="{{ language.code }}" {% ifequal language.code LANGUAGE_CODE %} selected{% endifequal %}>
-                    {{ language.name_local }}
-                </option>
+                {% ifnotequal language.code LANGUAGE_CODE %}
+                <input type="hidden" name="language" value="{{ language.code }}">
+                <input type="button" value="{{ language.name_local }}" onclick="this.form.submit();">
+                {% endifnotequal %}
                 {% endfor %}
-            </select>
-        </form>
-    </div>
+            </form>
+        </div>
+    </footer>
+    {% endblock %}
 </body>
 
 </html>

@@ -3,9 +3,9 @@
     --font-cjk: "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei";
     --font-text: var(--font-english), var(--font-cjk), sans-serif;
     --font-code: "Roboto Mono", Menlo, monospace;
-    --color-theme: #24292E;
+    --color-theme: slategrey;
     --background-color: #EAEBEC;
-    --background-color-header: var(--color-theme);
+    --background-color-header: #24292E;
     --background-color-main: #FAFBFC;
     --color-light-background: #EAEBEC;
     --color-text-light: #040405;
@@ -77,7 +77,6 @@ article {
 
 header {
     background-color: var(--background-color-header);
-    box-shadow: 0 0 1px 0 var(--color-theme);
     z-index: 1;
 }
 
@@ -97,15 +96,4 @@ main {
 
 .theme {
     color: var(--color-theme);
-}
-
-.language {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    opacity: 0.5;
-}
-
-.language:hover {
-    opacity: 1;
 }

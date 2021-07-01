@@ -1,5 +1,6 @@
 .pagination {
     margin: 20px 0;
+    align-self: flex-end;
 }
 
 .pagination a {
@@ -26,6 +27,6 @@
 }
 
 .pagination a.current, .pagination a.link:hover {
-    background: var(--color-header-hover-text);
-    opacity: 0.5;
+    color: var(--color-header-hover-text);
+    background: var(--color-header-text);
 }

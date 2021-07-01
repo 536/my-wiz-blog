@@ -1,16 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
-<title>{{ SYSTEM_TITLE_PREFIX }} | About</title>
-{% endblock %}
-
-{% block css %}
-<link rel="stylesheet" href="{% static 'css/components/footer.css' %}">
-{% endblock %}
-
-{% block header %}
-{% include 'components/navigation.html' %}
+<title>{{ SYSTEM_TITLE_PREFIX }} | {% translate "About" %}</title>
 {% endblock %}
 
 {% block main %}
@@ -19,8 +12,4 @@
         <p>当一个理想主义者（当累了就不当了</p>
     </article>
 </main>
-{% endblock %}
-
-{% block footer %}
-{% include 'components/footer.html' %}
 {% endblock %}

@@ -4,17 +4,21 @@ footer {
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
-    padding: 10px;
     box-sizing: border-box;
 }
 
-footer>a {
-    opacity: 0.5;
-    text-decoration: revert;
-    padding: 0 5px;
-    color: var(--color-theme);
+footer>div {
+    display: inline-block;
 }
 
-footer>a:hover {
-    opacity: 0.9;
+.language>form>input[type="button"] {
+    border: none;
+    padding: 10px;
+    color: var(--color-text);
+    background-color: transparent;
+}
+
+.language>form>input[type="button"]:hover {
+    background: var(--color-light-background);
+    cursor: pointer;
 }
