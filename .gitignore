@@ -2,3 +2,4 @@
 venv/
 **/migrations/*.py
 !**/migrations/__init__.py
+settings/dev.py
