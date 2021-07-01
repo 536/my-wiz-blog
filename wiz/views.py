@@ -2,7 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.views import View
 
-from wiznote.models import Doc, Tag
+from wiz.models import Doc, Tag
 
 
 class CategoryView(View):

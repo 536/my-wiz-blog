@@ -26,6 +26,10 @@
     margin-left: 4px;
 }
 
+.pagination a.disabled {
+    background: transparent;
+}
+
 .pagination a.current, .pagination a.link:hover {
     color: var(--color-header-hover-text);
     background: var(--color-header-text);

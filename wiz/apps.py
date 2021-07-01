@@ -1,8 +1,8 @@
 from django.apps import AppConfig
 
 
-class WiznoteConfig(AppConfig):
-    name = 'wiznote'
+class WizConfig(AppConfig):
+    name = 'wiz'
 
     def ready(self):
         from . import signals

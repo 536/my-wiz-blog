@@ -4,17 +4,17 @@
 # @Author  : https://github.com/536
 from django.db import models
 from django.dispatch import receiver
-from wiz import Wiz
+from wiznote import WizNote
 
 from system.models import System
-from wiznote.models import Share
+from wiz.models import Share
 
 
 @receiver(models.signals.post_save, sender=Share)
 def post_save(sender, instance, **kwargs):
     if instance.password or instance.expiredAt:
-        with Wiz(username=System.objects.get(key='WIZ_USERNAME').value,
-                 password=System.objects.get(key='WIZ_PASSWORD').value) as wiz:
+        with WizNote(username=System.objects.get(key='WIZ_USERNAME').value,
+                     password=System.objects.get(key='WIZ_PASSWORD').value) as wiz:
             wiz.create_or_update_share(
                 docGuid=instance.doc_set.first().guid,
                 password=instance.password,

@@ -29,6 +29,6 @@ urlpatterns = [
 
     path('about/', views.AboutView.as_view(), name='about'),
 
-    path('wiznote/', include('wiznote.urls', namespace='wiznote')),
+    path('wiz/', include('wiz.urls', namespace='wiz')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

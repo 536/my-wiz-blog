@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'system',
-    'wiznote',
+    'wiz',
     'django_celery_beat',
 ]
 

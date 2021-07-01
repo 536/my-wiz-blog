@@ -5,9 +5,6 @@ class Share(models.Model):
     objects = models.Manager()
 
     url = models.URLField()
-    password = models.CharField(max_length=50, null=True)
-    readCountLimit = models.IntegerField(null=True)
-    expiredAt = models.DateTimeField(null=True)
 
 
 class Tag(models.Model):
